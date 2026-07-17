@@ -1,38 +1,38 @@
 const phaseData = [
   {
     title: "Assess",
-    lead: "Every successful strategy begins with accurate diagnosis.",
-    body: "Before making recommendations, we develop a complete understanding of the business, market, competitors, commercial maturity, customer profile and growth objectives.",
+    lead: "First, we work out what is actually happening.",
+    body: "We look closely at the business, the market, the customer and the way new revenue is currently won. The aim is to separate the visible symptoms from the problem underneath.",
     items: ["Commercial audit", "Market research", "Product evaluation", "Competitor analysis", "Commercial readiness assessment", "Client qualification"]
   },
   {
     title: "Position",
-    lead: "Strong positioning reduces friction throughout the buying journey.",
-    body: "We define how the business should compete—refining its commercial narrative, value proposition, messaging, offer positioning and customer communication.",
-    items: ["Positioning strategy", "Messaging framework", "Value proposition engineering", "Offer positioning", "Objection mapping", "Founder positioning"]
+    lead: "Buyers should quickly understand why this business is the right choice.",
+    body: "We clarify who the offer is for, what makes it valuable and how it should be talked about. The result is a position the whole company can use—not a line that lives in a slide deck.",
+    items: ["Positioning strategy", "Messaging guide", "Value proposition", "Offer positioning", "Objection mapping", "Founder positioning"]
   },
   {
     title: "Establish Authority",
-    lead: "Modern buyers verify before they buy.",
-    body: "Before scaling activity, we strengthen the credibility surrounding the business and its leadership so that every commercial conversation begins with greater trust.",
+    lead: "Before buyers respond, they check whether the promise is credible.",
+    body: "We strengthen the evidence around the company and its leadership so prospects find substance when they do their homework—not just more claims.",
     items: ["Founder authority strategy", "LinkedIn optimisation", "Press distribution", "Digital footprint review", "Credibility assets", "Thought leadership planning"]
   },
   {
     title: "Activate",
-    lead: "Execution begins only when the conditions for conversion are in place.",
-    body: "Technology and human oversight combine to create personalised outbound systems that generate qualified conversations at scale.",
+    lead: "Once the groundwork is sound, we take it to market.",
+    body: "We build focused outbound and demand activity around the right accounts, a relevant message and careful human judgement. Technology supports the work; it does not replace the thinking.",
     items: ["Prospect research", "AI-assisted outbound", "Personalised email", "LinkedIn outreach", "Follow-up systems", "Campaign monitoring"]
   },
   {
     title: "Optimise",
-    lead: "Every campaign creates commercial intelligence.",
-    body: "We analyse market response continuously, refining the audience, message and execution so that every campaign performs better than the last.",
+    lead: "The market will tell us what is working—if we listen properly.",
+    body: "We study replies, objections, silence and conversion data, then use what we learn to improve the audience, message and way the campaign is run.",
     items: ["A/B testing", "Messaging refinement", "ICP refinement", "Objection analysis", "Campaign optimisation", "Strategic recommendations"]
   },
   {
     title: "Scale",
-    lead: "Growth should be repeatable, measurable and capable of expansion.",
-    body: "Once predictable systems are established, we focus on new markets, larger accounts, stronger partnerships and commercial operations designed for sustained growth.",
+    lead: "Only proven work deserves to be scaled.",
+    body: "Once the approach is producing consistently, we help the company pursue larger accounts, stronger partnerships and new markets without losing the discipline that made it work.",
     items: ["Enterprise account strategy", "Partnership development", "CRM optimisation", "Sales process consulting", "Quarterly planning", "International expansion"]
   }
 ];

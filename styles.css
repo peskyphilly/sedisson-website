@@ -65,7 +65,7 @@ h3 { font-size: clamp(1.4rem, 2vw, 2rem); }
   min-height: 88px;
   padding: 0 max(4vw, 28px);
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: max-content minmax(0, 1fr) max-content;
   align-items: center;
   gap: 2rem;
   background: rgba(247, 244, 237, .9);
@@ -75,11 +75,15 @@ h3 { font-size: clamp(1.4rem, 2vw, 2rem); }
 .wordmark { display: flex; align-items: center; gap: 1.15rem; color: var(--ink); }
 .wordmark span { font-weight: 700; letter-spacing: .18em; white-space: nowrap; }
 .wordmark small { padding-left: 1.15rem; border-left: 1px solid var(--line); font-size: .65rem; letter-spacing: .18em; text-transform: uppercase; white-space: nowrap; }
-.site-nav { display: flex; gap: clamp(1rem, 2vw, 2.4rem); font-size: .73rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.site-nav { display: flex; justify-self: center; gap: clamp(1rem, 2vw, 2.4rem); font-size: .73rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 .site-nav a { position: relative; }
 .site-nav a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -.45rem; height: 1px; background: var(--coral); transition: right .25s ease; }
 .site-nav a:hover::after { right: 0; }
-.header-cta { justify-self: end; }
+.header-cta {
+  justify-self: end;
+  min-width: 230px;
+  white-space: nowrap;
+}
 .menu-toggle { display: none; background: transparent; border: 1px solid var(--line); padding: .65rem .8rem; }
 
 .button {
