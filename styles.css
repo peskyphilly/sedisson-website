@@ -72,9 +72,8 @@ h3 { font-size: clamp(1.4rem, 2vw, 2rem); }
   border-bottom: 1px solid var(--line);
   backdrop-filter: blur(16px);
 }
-.wordmark { display: flex; align-items: center; gap: 1.15rem; color: var(--ink); }
-.wordmark span { font-weight: 700; letter-spacing: .18em; white-space: nowrap; }
-.wordmark small { padding-left: 1.15rem; border-left: 1px solid var(--line); font-size: .65rem; letter-spacing: .18em; text-transform: uppercase; white-space: nowrap; }
+.wordmark { display: flex; align-items: center; color: var(--ink); line-height: 0; }
+.wordmark img { display: block; width: auto; height: 34px; }
 .site-nav { display: flex; justify-self: center; gap: clamp(1rem, 2vw, 2.4rem); font-size: .73rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 .site-nav a { position: relative; }
 .site-nav a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -.45rem; height: 1px; background: var(--coral); transition: right .25s ease; }
@@ -348,7 +347,7 @@ footer > a { justify-self: end; font-size: .75rem; }
 
 @media (max-width: 900px) {
   h1 { font-size: clamp(3rem, 10vw, 5rem); }
-  .wordmark small { display: none; }
+  .wordmark img { height: 28px; }
   .engine-visual { margin-top: 1.5rem; }
   .trust-strip { grid-template-columns: 1fr; gap: 1.5rem; }
   .trust-strip div { grid-template-columns: 1fr 1fr; }
@@ -374,7 +373,7 @@ footer > a { justify-self: end; font-size: .75rem; }
 @media (max-width: 600px) {
   .site-header { min-height: 72px; padding: 0 18px; }
   .site-nav { top: 72px; }
-  .wordmark span { font-size: .85rem; }
+  .wordmark img { height: 24px; }
   .hero { min-height: auto; padding: 4rem 18px 3rem; }
   .hero h1 { font-size: 3.25rem; }
   .button-row, .button-row .button { width: 100%; }
@@ -526,7 +525,7 @@ footer > a { justify-self: end; font-size: .75rem; }
   .insights-hero aside { max-width: 500px; }
 }
 @media (max-width: 1380px) {
-  .site-header .wordmark small { display: none; }
+  .site-header .wordmark img { height: 30px; }
 }
 @media (max-width: 900px) {
   .home-pathways, .principle-grid, .signal-grid, .engagement-table { grid-template-columns: 1fr; }
