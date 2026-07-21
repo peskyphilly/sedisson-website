@@ -8,13 +8,13 @@ const phaseData = [
   {
     title: "Position",
     lead: "Buyers should quickly understand why this business is the right choice.",
-    body: "We clarify who the offer is for, what makes it valuable and how it should be talked about. The result is a position the whole company can use—not a line that lives in a slide deck.",
+    body: "We clarify who the offer is for, what makes it valuable and how it should be talked about. The result is a position the whole company can use, not a line that lives in a slide deck.",
     items: ["Positioning strategy", "Messaging guide", "Value proposition", "Offer positioning", "Objection mapping", "Founder positioning"]
   },
   {
     title: "Establish Authority",
     lead: "Before buyers respond, they check whether the promise is credible.",
-    body: "We strengthen the evidence around the company and its leadership so prospects find substance when they do their homework—not just more claims.",
+    body: "We strengthen the evidence around the company and its leadership so prospects find substance when they do their homework, not just more claims.",
     items: ["Founder authority strategy", "LinkedIn optimisation", "Press distribution", "Digital footprint review", "Credibility assets", "Thought leadership planning"]
   },
   {
@@ -25,7 +25,7 @@ const phaseData = [
   },
   {
     title: "Optimise",
-    lead: "The market will tell us what is working—if we listen properly.",
+    lead: "The market will tell us what is working, if we listen properly.",
     body: "We study replies, objections, silence and conversion data, then use what we learn to improve the audience, message and way the campaign is run.",
     items: ["A/B testing", "Messaging refinement", "ICP refinement", "Objection analysis", "Campaign optimisation", "Strategic recommendations"]
   },

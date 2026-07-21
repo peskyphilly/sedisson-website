@@ -516,7 +516,9 @@ footer > a { justify-self: end; font-size: .75rem; }
 .contact-page-hero h1 { font-size: clamp(4.5rem,8vw,9rem); }
 .contact-page-hero aside { padding: 2rem; border: 1px solid var(--line); }
 .contact-page-hero aside p, .contact-page-hero aside span { display: block; color: var(--muted); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; }
-.contact-page-hero aside a { display: block; margin: 2rem 0; font-family: Georgia,serif; font-size: 1.5rem; }
+.contact-page-hero aside a { display: block; margin: 1rem 0; font-family: Georgia,serif; font-size: 1.5rem; }
+.contact-page-hero aside a + a { margin-top: .35rem; font-size: 1.25rem; }
+.contact-page-hero aside span { margin-top: 1.5rem; }
 .contact-page { padding-top: 7rem; }
 
 @media (max-width: 1180px) {
