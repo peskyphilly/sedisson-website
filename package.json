@@ -1,0 +1,13 @@
+{
+  "name": "sedisson-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node --check script.js && node --check api/assessment.js && node --check api/retry-assessment-notifications.js && node --check api/_assessment.js",
+    "db:migrate": "node scripts/migrate.mjs"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.0"
+  }
+}

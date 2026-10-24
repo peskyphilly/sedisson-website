@@ -92,7 +92,17 @@ const nextButton = document.getElementById("next-step");
 const submitButton = document.getElementById("submit-form");
 const errorMessage = document.getElementById("form-error");
 const success = document.getElementById("form-success");
+const submissionReference = document.getElementById("submission-reference");
 let currentStep = 0;
+function createIdempotencyKey() {
+  if (crypto.randomUUID) return crypto.randomUUID();
+  const bytes = crypto.getRandomValues(new Uint8Array(16));
+  bytes[6] = (bytes[6] & 0x0f) | 0x40;
+  bytes[8] = (bytes[8] & 0x3f) | 0x80;
+  const hex = [...bytes].map(byte => byte.toString(16).padStart(2, "0"));
+  return `${hex.slice(0, 4).join("")}-${hex.slice(4, 6).join("")}-${hex.slice(6, 8).join("")}-${hex.slice(8, 10).join("")}-${hex.slice(10).join("")}`;
+}
+let idempotencyKey = createIdempotencyKey();
 
 function showStep(index) {
   currentStep = Math.max(0, Math.min(index, steps.length - 1));
@@ -128,7 +138,7 @@ function saveDraft() {
     if (values[key]) values[key] = [].concat(values[key], value);
     else values[key] = value;
   });
-  try { localStorage.setItem("sedissonAssessmentDraft", JSON.stringify({ step: currentStep, values })); } catch (_) {}
+  try { localStorage.setItem("sedissonAssessmentDraft", JSON.stringify({ step: currentStep, values, idempotencyKey })); } catch (_) {}
 }
 
 function restoreDraft() {
@@ -136,6 +146,7 @@ function restoreDraft() {
   let draft;
   try { draft = JSON.parse(localStorage.getItem("sedissonAssessmentDraft")); } catch (_) { return; }
   if (!draft?.values) return;
+  if (typeof draft.idempotencyKey === "string") idempotencyKey = draft.idempotencyKey;
   Object.entries(draft.values).forEach(([name, value]) => {
     const fields = [...form.elements].filter(field => field.name === name);
     fields.forEach(field => {
@@ -149,13 +160,43 @@ function restoreDraft() {
 nextButton?.addEventListener("click", () => { if (validateStep()) showStep(currentStep + 1); });
 previousButton?.addEventListener("click", () => showStep(currentStep - 1));
 form?.addEventListener("input", saveDraft);
-form?.addEventListener("submit", event => {
+form?.addEventListener("submit", async event => {
   event.preventDefault();
   if (!validateStep()) return;
-  form.hidden = true;
-  success.hidden = false;
-  try { localStorage.removeItem("sedissonAssessmentDraft"); } catch (_) {}
-  success.focus?.();
+  saveDraft();
+  const originalButtonContent = submitButton.innerHTML;
+  submitButton.disabled = true;
+  submitButton.textContent = "Storing assessment…";
+  errorMessage.textContent = "";
+
+  const payload = { idempotencyKey };
+  new FormData(form).forEach((value, key) => {
+    if (Object.prototype.hasOwnProperty.call(payload, key)) payload[key] = [].concat(payload[key], value);
+    else payload[key] = value;
+  });
+
+  try {
+    const response = await fetch("/api/assessment", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || !result.captured || !result.reference) {
+      throw new Error(result.message || "We could not confirm that your assessment was stored.");
+    }
+
+    submissionReference.textContent = result.reference;
+    form.hidden = true;
+    success.hidden = false;
+    try { localStorage.removeItem("sedissonAssessmentDraft"); } catch (_) {}
+    success.focus();
+  } catch (error) {
+    errorMessage.textContent = `${error.message} Your answers are still saved in this browser; please try again.`;
+  } finally {
+    submitButton.disabled = false;
+    submitButton.innerHTML = originalButtonContent;
+  }
 });
 
 restoreDraft();

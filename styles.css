@@ -307,8 +307,13 @@ h3 { font-size: clamp(1.4rem, 2vw, 2rem); }
 #prev-step { visibility: hidden; }
 #submit-form { display: none; }
 .form-error { min-height: 1.5rem; margin: 1rem 0 0; color: #9d3d2d; font-size: .8rem; }
+.form-trap { position: absolute !important; left: -10000px !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
+.form-step .consent-line { margin-top: 1.75rem; padding: 1rem; display: flex; gap: .8rem; align-items: flex-start; border: 1px solid var(--line); font-weight: 500; line-height: 1.5; }
+.form-step .consent-line input { width: auto; margin: .18rem 0 0; flex: 0 0 auto; }
+.form-controls button[disabled] { cursor: wait; opacity: .65; }
 .form-success { padding: 3rem 0; }
 .form-success h3 { color: var(--ink); font-family: Georgia, serif; font-size: 3rem; font-weight: 400; }
+.submission-reference { margin-top: 2rem; color: var(--muted); font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; }
 
 .faq { display: grid; grid-template-columns: .7fr 1.3fr; gap: 5rem; border-top: 1px solid var(--line); }
 .accordion details { border-bottom: 1px solid var(--line); }
