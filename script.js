@@ -104,6 +104,28 @@ function createIdempotencyKey() {
 }
 let idempotencyKey = createIdempotencyKey();
 
+function normaliseWebUrl(value) {
+  const trimmed = value.trim();
+  if (!trimmed) return "";
+  const candidate = /^[a-z][a-z\d+.-]*:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
+  try {
+    const url = new URL(candidate);
+    const hostLooksPublic = url.hostname.includes(".") || /^\d{1,3}(\.\d{1,3}){3}$/.test(url.hostname);
+    if (!/^https?:$/.test(url.protocol) || !hostLooksPublic || url.username || url.password) return "";
+    return url.href;
+  } catch (_) {
+    return "";
+  }
+}
+
+function validateUrlField(field) {
+  if (!field.matches("[data-url-field]")) return true;
+  const isOptionalAndEmpty = !field.required && !field.value.trim();
+  const valid = isOptionalAndEmpty || Boolean(normaliseWebUrl(field.value));
+  field.setCustomValidity(valid ? "" : `Enter a valid ${field.dataset.urlField}, such as example.com.`);
+  return valid;
+}
+
 function showStep(index) {
   currentStep = Math.max(0, Math.min(index, steps.length - 1));
   steps.forEach((step, i) => step.classList.toggle("active", i === currentStep));
@@ -119,6 +141,7 @@ function showStep(index) {
 function validateStep() {
   const fields = [...steps[currentStep].querySelectorAll("input, textarea, select")];
   for (const field of fields) {
+    validateUrlField(field);
     if (!field.checkValidity()) {
       field.focus();
       errorMessage.textContent = field.type === "email"
@@ -160,6 +183,10 @@ function restoreDraft() {
 nextButton?.addEventListener("click", () => { if (validateStep()) showStep(currentStep + 1); });
 previousButton?.addEventListener("click", () => showStep(currentStep - 1));
 form?.addEventListener("input", saveDraft);
+form?.querySelectorAll("[data-url-field]").forEach(field => {
+  field.addEventListener("input", () => field.setCustomValidity(""));
+  field.addEventListener("blur", () => validateUrlField(field));
+});
 form?.addEventListener("submit", async event => {
   event.preventDefault();
   if (!validateStep()) return;
